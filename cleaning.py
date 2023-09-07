@@ -1,4 +1,6 @@
 import pandas as pd
+from unidecode import unidecode
+
 # Lê dos arquivos CSV
 escolas_df = pd.read_csv("data/escolas.csv")
 subprefeituras_df = pd.read_csv("data/subprefeituras.csv")
@@ -15,3 +17,5 @@ material_didatico_df.columns = [
     unidecode(col.lower()) for col in material_didatico_df.columns
 ]
 
+# Formata IDs da escola com 3 caracteres
+escolas_df["id"] = escolas_df["id"].astype(str).str.zfill(3)
