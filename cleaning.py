@@ -19,4 +19,24 @@ material_didatico_df.columns = [
 
 # Formata IDs da escola com 3 caracteres
 escolas_df["id"] = escolas_df["id"].astype(str).str.zfill(3)
-print(escolas_df)
+
+def padronizar_endereco(endereco):
+    palavras = endereco.split()
+
+    endereco_padronizado = " ".join(
+        [unidecode(palavra) for palavra in palavras]
+    )
+
+    # Padroniza o nome dos logradouros sem abreviação
+    endereco_padronizado = re.sub(r"\bR\.?\b", "Rua", endereco_padronizado)
+    endereco_padronizado = re.sub(
+        r"\bAV\.?\b", "Avenida", endereco_padronizado
+    )
+    endereco_padronizado = re.sub(
+        r"\bTR\.?\b", "Travessa", endereco_padronizado
+    )
+    endereco_padronizado = endereco_padronizado.upper()
+
+    return endereco_padronizado
+
+
