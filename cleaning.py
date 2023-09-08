@@ -50,3 +50,5 @@ def padronizar_endereco(endereco):
     return endereco_padronizado
 
 
+escolas_df["endereco"] = escolas_df["endereco"].map(padronizar_endereco)
+
