@@ -31,6 +31,8 @@ def padronizar_endereco(endereco):
         [unidecode(palavra) for palavra in palavras]
     )
 
+    endereco_padronizado = endereco_padronizado.upper()
+
     # Padroniza o nome dos logradouros sem abreviação
     endereco_padronizado = re.sub(r"\bR\.?\b", "RUA", endereco_padronizado)
     endereco_padronizado = re.sub(
