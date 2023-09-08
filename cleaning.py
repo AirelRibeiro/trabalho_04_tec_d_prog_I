@@ -32,7 +32,13 @@ def padronizar_endereco(endereco):
     )
 
     # Padroniza o nome dos logradouros sem abreviação
-    endereco_padronizado = re.sub(r"\bR\.?\b", "Rua", endereco_padronizado)
+    endereco_padronizado = re.sub(r"\bR\.?\b", "RUA", endereco_padronizado)
+    endereco_padronizado = re.sub(
+        r"\bAV\.?\b", "AVENIDA", endereco_padronizado
+    )
+    endereco_padronizado = re.sub(
+        r"\bTR\.?\b", "TRAVESSA", endereco_padronizado
+    )
     endereco_padronizado = re.sub(
         r"\bAV\.?\b", "Avenida", endereco_padronizado
     )
