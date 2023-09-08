@@ -20,3 +20,4 @@ material_didatico_df.columns = [
 # Formata IDs da escola com 3 caracteres
 escolas_df["id"] = escolas_df["id"].astype(str).str.zfill(3)
 print("teste")
+print("teste novo")
