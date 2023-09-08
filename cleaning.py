@@ -21,12 +21,15 @@ material_didatico_df.columns = [
     unidecode(col.lower().strip()) for col in material_didatico_df.columns
 ]
 
+
 # Formata IDs da escola com 3 caracteres
 escolas_df["id"] = escolas_df["id"].astype(str).str.zfill(3)
+
 
 def padronizar_endereco(endereco):
     palavras = endereco.split()
 
+    # Retira caracteres especiais
     endereco_padronizado = " ".join(
         [unidecode(palavra) for palavra in palavras]
     )
@@ -50,5 +53,6 @@ def padronizar_endereco(endereco):
     return endereco_padronizado
 
 
+# Normaliza endereços usando função 'padronizar_endereco'
 escolas_df["endereco"] = escolas_df["endereco"].map(padronizar_endereco)
 
