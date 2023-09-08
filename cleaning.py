@@ -40,13 +40,11 @@ def padronizar_endereco(endereco):
         r"\bTR\.?\b", "TRAVESSA", endereco_padronizado
     )
     endereco_padronizado = re.sub(
-        r"\bAV\.?\b", "Avenida", endereco_padronizado
+        r"\bESTR\.?\b", "ESTRADA", endereco_padronizado
     )
     endereco_padronizado = re.sub(
-        r"\bTR\.?\b", "Travessa", endereco_padronizado
+        r"\bPÇA\.?\b", "ESTRADA", endereco_padronizado
     )
-    endereco_padronizado = endereco_padronizado.upper()
-
     return endereco_padronizado
 
 
