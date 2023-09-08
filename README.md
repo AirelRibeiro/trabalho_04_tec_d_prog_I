@@ -87,5 +87,6 @@ Para desativar seu ambiente virtual, basta executar o seguinte comando:
 deactivate
 ```
 
+
 </details>
 </details>
