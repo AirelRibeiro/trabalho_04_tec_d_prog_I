@@ -1,5 +1,7 @@
 import pandas as pd
 from unidecode import unidecode
+import re
+
 
 # Lê dos arquivos CSV
 escolas_df = pd.read_csv("data/escolas.csv")
