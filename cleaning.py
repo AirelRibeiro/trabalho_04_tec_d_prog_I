@@ -53,6 +53,9 @@ def padronizar_endereco(endereco):
     return endereco_padronizado
 
 
+# Normaliza endereços usando função 'padronizar_endereco'
+escolas_df["endereco"] = escolas_df["endereco"].map(padronizar_endereco)
+
 # Normaliza latitude e longitude
 escolas_df["lat"] = escolas_df["lat"].apply(
     lambda x: float(x.replace(",", ".")).__round__(5)
@@ -61,6 +64,5 @@ escolas_df["lon"] = escolas_df["lon"].apply(
     lambda x: float(x.replace(",", ".")).__round__(5)
 )
 
-# Normaliza endereços usando função 'padronizar_endereco'
-escolas_df["endereco"] = escolas_df["endereco"].map(padronizar_endereco)
 
+print(escolas_df.head(), end="\n\n")
