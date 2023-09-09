@@ -22,8 +22,12 @@ material_didatico_df.columns = [
 ]
 
 
-# Formata IDs da escola com 3 caracteres
+# Formata IDs com 3 caracteres
 escolas_df["id"] = escolas_df["id"].astype(str).str.zfill(3)
+subprefeituras_df["id"] = subprefeituras_df["id"].astype(str).str.zfill(3)
+material_didatico_df["id"] = (
+    material_didatico_df["id"].astype(str).str.zfill(3)
+)
 
 
 def padronizar_endereco(endereco):
