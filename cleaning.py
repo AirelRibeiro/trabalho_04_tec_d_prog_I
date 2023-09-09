@@ -50,7 +50,7 @@ def padronizar_endereco(endereco):
     endereco_padronizado = re.sub(
         r"\bPÇA\.?\b", "ESTRADA", endereco_padronizado
     )
-    return endereco_padronizado
+    return endereco_padronizado.replace(".", "")
 
 
 # Normaliza endereços usando função 'padronizar_endereco'
