@@ -24,10 +24,8 @@ material_didatico_df.columns = [
 
 # Formata IDs com 3 caracteres
 escolas_df["id"] = escolas_df["id"].astype(str).str.zfill(3)
-subprefeituras_df["id"] = subprefeituras_df["id"].astype(str).str.zfill(3)
 material_didatico_df["id"] = (
-    material_didatico_df["id"].astype(str).str.zfill(3)
-)
+    material_didatico_df["id"].astype(str).str.zfill(3))
 
 
 def padronizar_endereco(endereco):
@@ -37,7 +35,6 @@ def padronizar_endereco(endereco):
     endereco_padronizado = " ".join(
         [unidecode(palavra) for palavra in palavras]
     )
-
     endereco_padronizado = endereco_padronizado.upper()
 
     # Padroniza o nome dos logradouros sem abreviação
@@ -55,6 +52,17 @@ def padronizar_endereco(endereco):
         r"\bPÇA\.?\b", "ESTRADA", endereco_padronizado
     )
     return endereco_padronizado.replace(".", "")
+
+
+def padronizar_subprefeituras(subprefeituras):
+    palavras = subprefeituras.split()
+
+    # Retira caracteres especiais
+    subprefeituras_padronizado = " ".join(
+        [unidecode(palavra) for palavra in palavras]
+    )
+
+    return subprefeituras_padronizado.upper()
 
 
 # Normaliza endereços usando função 'padronizar_endereco'
@@ -78,5 +86,15 @@ escolas_df["lon"] = escolas_df["lon"].apply(
     lambda x: float(x.replace(",", ".")).__round__(5)
 )
 
+# Normaliza subprefeituras usando função 'padronizar_subprefeituras'
+subprefeituras_df = subprefeituras_df.map(
+    padronizar_subprefeituras)
 
-print(escolas_df.head(), end="\n\n")
+# Ligando tabelas e normalizando nome da tabela de subprefeitura
+subprefeituras_df.rename(columns={"nome": "bairro"}, inplace=True)
+join_escola_material = pd.merge(
+    escolas_df, material_didatico_df, on="id", how="inner")
+join_tabelas = pd.merge(join_escola_material, subprefeituras_df,
+                        on="bairro", how="inner")
+
+print(join_tabelas, end="\n\n")
