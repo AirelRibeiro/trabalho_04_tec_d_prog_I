@@ -95,8 +95,10 @@ subprefeituras_df = subprefeituras_df.map(
 
 # Ligando tabelas e normalizando nome da tabela de subprefeitura
 subprefeituras_df.rename(columns={"nome": "bairro"}, inplace=True)
+
 join_escola_material = pd.merge(
     escolas_df, material_didatico_df, on="id", how="inner")
+
 join_tabelas = pd.merge(join_escola_material, subprefeituras_df,
                         on="bairro", how="inner")
 
@@ -120,11 +122,13 @@ def padronizar_escolas(escolas):
 join_tabelas["tipo_da_escola"] = join_tabelas["nome_da_escola"].apply(
     padronizar_escolas)
 
+# Exemplo de regex usando str replace
 join_tabelas["numero"] = join_tabelas['logradouro_da_entrega'].str.extract(
     r'(\d+|\bS/NO\b)')
 
 join_tabelas["numero"].fillna('S/NO', inplace=True)
 
+# Exemplo de regex usando str replace
 join_tabelas['logradouro_da_entrega'] = join_tabelas['logradouro_da_entrega'].str.replace(
     r'\d+|S/NO', '', regex=True).str.rstrip(', ').str.strip()
 
@@ -142,7 +146,7 @@ group_prefei_material.to_csv('total_material.csv')
 
 
 # print(group_prefei_material, end="\n\n")
-# print(join_tabelas["longitude"].tolist(), end="\n\n")
+print(join_tabelas, end="\n\n")
 
 # Plot
 plt.figure(figsize=(10, 6))
@@ -152,8 +156,8 @@ plt.scatter(join_tabelas["longitude"].head(100).tolist(),
 plt.plot(join_tabelas["longitude"].head(100).tolist(), join_tabelas["latitude"].head(100).tolist(),
          c='blue',  linestyle='-', label='Escolas')
 
-plt.xlabel('longitude')
-plt.ylabel('latitude')
+plt.xlabel('Longitude')
+plt.ylabel('Latitude')
 plt.title('Rota Otimizada de Entrega')
 plt.legend()
 plt.grid(True)
