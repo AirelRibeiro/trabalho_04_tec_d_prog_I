@@ -107,7 +107,15 @@ join_tabelas['distancia'] = join_tabelas.apply(lambda row: data_analyzer.haversi
     row['latitude'], row['longitude'], row['next_latitude'], row['next_longitude']), axis=1)
 
 # Plotando gráfico
-data_plot_manager.plot_route(join_tabelas)
+pontos_entrega_df = join_tabelas[['latitude', 'longitude']]
+
+best_route = data_analyzer.nearest_neighbor(pontos_entrega_df)
+ordered_df = join_tabelas.iloc[best_route].reset_index(drop=True)
+
+data_plot_manager.plot_route(ordered_df)
+
+map_obj = data_plot_manager.plot_on_map(ordered_df)
+map_obj.save('map.html')
 
 # Exportando dados para csv
 join_tabelas.to_csv('rotas_seguidas.csv', index=False)

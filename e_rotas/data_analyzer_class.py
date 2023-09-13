@@ -14,3 +14,25 @@ class DataAnalyzer:
         c = 2 * np.arctan2(np.sqrt(a), np.sqrt(1 - a))
         distance = raio_lat_terra * c
         return distance
+
+    @staticmethod
+    def nearest_neighbor(points):
+        unvisited = set(
+            range(1, len(points))
+        )  # índices que representam os pontos não visitados
+        current_point = 0
+        route = [current_point]
+
+        while unvisited:
+            nearest = min(
+                unvisited, key=lambda x: DataAnalyzer.haversine(points.iloc[current_point]['latitude'],
+                                                                points.iloc[current_point]['longitude'],
+                                                                points.iloc[x]['latitude'],
+                                                                points.iloc[x]['longitude'])
+            )
+            route.append(nearest)
+            unvisited.remove(nearest)
+            current_point = nearest
+
+        route.append(0)  # Volta ao ponto inicial para fechar o ciclo
+        return route

@@ -4,3 +4,4 @@ unidecode
 matplotlib
 networkx
 scipy
+folium

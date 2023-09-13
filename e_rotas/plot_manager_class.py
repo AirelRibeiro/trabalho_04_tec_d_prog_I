@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import folium
 
 
 class PlotManager:
@@ -40,3 +41,23 @@ class PlotManager:
                   "{:.2f} km".format(total_distance))
         plt.grid(True)
         plt.show()
+
+    @staticmethod
+    def plot_on_map(df):
+        m = folium.Map(location=[df['latitude'].mean(),
+                                 df['longitude'].mean()], zoom_start=10)
+
+        for _, row in df.iterrows():
+            folium.CircleMarker(location=[row['latitude'], row['longitude']],
+                                radius=5,
+                                color='blue',
+                                fill=True,
+                                fill_opacity=0.7,
+                                fill_color='blue',
+                                popup=str(row['quantidade_material'])
+                                ).add_to(m)
+
+        latlngs = list(zip(df['latitude'], df['longitude']))
+        folium.PolyLine(latlngs, color="blue", weight=2.5, opacity=1).add_to(m)
+
+        return m
