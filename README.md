@@ -1,4 +1,28 @@
-# Trabalho final: Técnicas de programação I
+# Trabalho Final: Técnicas de programação I 💻
+
+Alunos: Airel Ribeiro E Silva | David Dos Santos Gonzalez | Juan Daniel Da Silva Campos Ferreira Campos | Rafael De Castro Gomes
+
+## Distribuição de Materiais Didáticos no Rio de Janeiro 🗺️
+
+Este projeto visa realizar tratamentos nos dados e otimizar a distribuição de materiais didáticos nas escolas da cidade do Rio de Janeiro.
+
+### Contexto 🚚
+
+Uma consultoria de dados foi contratada para assegurar que os materiais didáticos sejam entregues de forma eficiente nas escolas do Rio de Janeiro. O objetivo é tratar os dados segundo normas estabelecidas pelo cliente e determinar a rota mais eficaz para o caminhão de entrega.
+
+### Visualização da rota otimizada
+
+Para oferecer uma representação visual clara da rota otimizada, criamos um plot utilizando a biblioteca Matplotlib. Esse gráfico proporciona uma visão intuitiva do trajeto planejado, destacando a sequência e a proximidade das escolas no percurso otimizado.
+
+</br>
+<p align="center">
+  <kbd>
+ <img width="800" style="border-radius: 10px" height="400" src="figure_1.png" alt="Intro"> 
+  </kbd>
+  </br>
+</p>
+</br>
+
 
 <details>
 <summary><h2>Execução com Ambiente Virtual</h2></summary>
