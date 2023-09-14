@@ -5,43 +5,43 @@ from unidecode import unidecode
 class DataNormalizer:
 
     @staticmethod
-    def normalize_endereco(endereco):
-        palavras = endereco.split()
+    def normalize_address(endereco):
+        words_adress = endereco.split()
 
         # Retira caracteres especiais
-        endereco_padronizado = " ".join(
-            [unidecode(palavra) for palavra in palavras])
-        endereco_padronizado = endereco_padronizado.upper()
+        standardized_address = " ".join(
+            [unidecode(palavra) for palavra in words_adress])
+        standardized_address = standardized_address.upper()
 
-        # Padroniza o nome dos logradouros sem abreviação
-        endereco_padronizado = re.sub(r"\bR\.?\b", "RUA", endereco_padronizado)
-        endereco_padronizado = re.sub(
-            r"\bAV\.?\b", "AVENIDA", endereco_padronizado)
-        endereco_padronizado = re.sub(
-            r"\bTR\.?\b", "TRAVESSA", endereco_padronizado)
-        endereco_padronizado = re.sub(
-            r"\bESTR\.?\b", "ESTRADA", endereco_padronizado)
-        endereco_padronizado = re.sub(
-            r"\bPÇA\.?\b", "ESTRADA", endereco_padronizado)
+        # Padroniza o name dos logradouros sem abreviação
+        standardized_address = re.sub(r"\bR\.?\b", "RUA", standardized_address)
+        standardized_address = re.sub(
+            r"\bAV\.?\b", "AVENIDA", standardized_address)
+        standardized_address = re.sub(
+            r"\bTR\.?\b", "TRAVESSA", standardized_address)
+        standardized_address = re.sub(
+            r"\bESTR\.?\b", "ESTRADA", standardized_address)
+        standardized_address = re.sub(
+            r"\bPÇA\.?\b", "ESTRADA", standardized_address)
 
-        return endereco_padronizado.replace(".", "")
+        return standardized_address.replace(".", "")
 
     @staticmethod
-    def normalize_subprefeituras(subprefeituras):
-        palavras = subprefeituras.split()
+    def normalize_subprefectures(subprefectures):
+        words_subprefectures = subprefectures.split()
 
         # Retira caracteres especiais
-        subprefeituras_padronizado = " ".join(
-            [unidecode(palavra) for palavra in palavras])
-        return subprefeituras_padronizado.upper()
+        subprefectures_standardized = " ".join(
+            [unidecode(words) for words in words_subprefectures])
+        return subprefectures_standardized.upper()
 
     @staticmethod
-    def normalize_escolas(escolas):
-        nome = escolas.upper().strip()
+    def normalize_schools(schools):
+        name = schools.upper().strip()
 
-        if "CIEP" in nome or "CENTRO INTEGRADO DE EDUCACAO PUBLICA" in nome:
+        if "CIEP" in name or "CENTRO INTEGRADO DE EDUCACAO PUBLICA" in name:
             return "CIEP"
-        elif nome.startswith("EM ") or nome.startswith("E.M. ") or nome.startswith("E.M ") or "ESCOLA MUNICIPAL" in nome:
+        elif name.startswith("EM ") or name.startswith("E.M. ") or name.startswith("E.M ") or "ESCOLA MUNICIPAL" in name:
             return "EM"
         else:
             return "COLÉGIO"
