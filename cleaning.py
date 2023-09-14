@@ -115,8 +115,8 @@ ordered_df = join_tables.iloc[best_route].reset_index(drop=True)
 data_plot_manager.plot_route(ordered_df)
 
 map_obj = data_plot_manager.plot_on_map(ordered_df)
-map_obj.save('map.html')
+map_obj.save('export/map.html')
 
 # Exportando dados para csv
-join_tables.to_csv('rotas_seguidas.csv', index=False)
-groupby_subprefecture_courseware.to_csv('total_material.csv')
+join_tables.to_csv('export/rotas_seguidas.csv', index=False)
+groupby_subprefecture_courseware.to_csv('export/total_material.csv')
